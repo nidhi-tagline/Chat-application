@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-3 p-5">
+    <div class="row justify-content-between">
+        <div class="col-3">
+            <h2 class='mb-3'>Let's Chat!</h2>
+        </div>
+        <div class="col-2">{{ user.username }}
+            <a href="/accounts/logout/">Logout</a></div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="mb-2">
+                <label for="chat-log">Room: #{{ room.name }}</label>
+                <a href="{% url 'index'%}" class="link-danger">leave</a>
+                <textarea class="form-control" id="chat-log" readonly cols="100" style="height: 300px; resize: none;"></textarea>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="chat-message-input" placeholder="Enter message">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" id="chat-message-send" type="button">send</button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="online-users-selector">Online users</label>
+            <select multiple class="form-control" id="online-users-selector" style="height: 300px; resize: none;">
+            </select>
+        </div>
+    </div>
+    {{ room.name|json_script:"room-name" }}
+</div>
+<script src="{% static 'js/room.js' %}"></script>
+{% endblock content %}

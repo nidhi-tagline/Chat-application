@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-3 p-5">
+    <h3 class="m-4">Login</h3>
+    <div class="row ms-3">
+        {% if form.errors %}
+        <p class='text-danger'>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+    </div>
+    <div class="row">
+        <form method="post" class="col-md-5" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table class="m-4">
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+            <input class="ms-4 btn btn-primary" type="submit" value="login">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+        <p class="m-4">Don't have account? <a href="{% url 'signup' %}">Signup</a></p>
+    </div>
+</div>
+
+{% endblock content %}

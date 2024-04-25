@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-3 p-5">
+    <h3 class="m-4">Sign-up</h3>
+   
+    <div class="row">
+        <form method="post" class="m-4" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <table class="m-4">
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password1.label_tag }}</td>
+                    <td>{{ form.password1 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password2.label_tag }}</td>
+                    <td>{{ form.password2 }}</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary" type="submit">Signup</button>
+        </form>
+        <p class="m-4">Have account? <a href="{% url 'login' %}">Log in</a></p>
+    </div>
+</div>
+
+{% endblock content %}
