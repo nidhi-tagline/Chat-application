@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-3 p-5">
+    <div class="row justify-content-between">
+        <div class="col-3">
+            <h1 class='mb-5'>Let's Chat!</h1>
+        </div>
+        <div class="col-2">{{ user.username }}
+            <a href="/accounts/logout/">Logout</a></div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="mb-2">
+                <label class="mb-1" for="room-input">Enter a room name :</label>
+                <input type="text" class="form-control" id="room-input" placeholder="Room name">
+            </div>
+            <button type="button" id="room-connect" class="btn btn-primary">Connect</button>
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="room-select">Active rooms</label>
+            <select multiple class="form-control" id="room-select">
+                {% for room in rooms %}
+                <option>{{ room }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock content %}
